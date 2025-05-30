@@ -93,10 +93,11 @@ public class MainApp {
         name = KeyB.nextLine();
         System.out.print("AM: "); 
         studentId = KeyB.nextLine();
-        while (searchStudentID(studentId)) { // Ελέγχουμε αν το ΑΜ υπάρχει ήδη
-        System.out.print("Το ΑΜ υπάρχει ήδη. \nΠαρακαλώ εισάγετε ένα νέο ΑΜ: ");
-        studentId = KeyB.nextLine();
-        }
+        while (searchStudentID(studentId)) // Ελέγχουμε αν το ΑΜ υπάρχει ήδη
+            { 
+            System.out.print("Το ΑΜ υπάρχει ήδη. \nΠαρακαλώ εισάγετε ένα νέο ΑΜ: ");
+            studentId = KeyB.nextLine();
+            }
         System.out.print("Email: ");
         email = KeyB.nextLine();
         System.out.print("Τμήμα: ");
@@ -145,7 +146,7 @@ public class MainApp {
         return -1;     
     }
 
-    public void searchStudentPhone() {
+    public void searchStudentPhone() { // Μέθοδος για αναζήτηση φοιτητή βάσει τηλεφώνου
         Cls();
         ClsWin();
         System.out.println("-----------------UNIWA------------------");
@@ -171,7 +172,7 @@ public class MainApp {
     }
     
 
-    public void editStudentName() {
+    public void editStudentName() { // Μέθοδος για επεξεργασία φοιτητή βάσει ονόματος
         Cls();
         ClsWin();
         System.out.println("-----------------UNIWA------------------");
@@ -181,19 +182,19 @@ public class MainApp {
         Student tmp = null;
         int i = -1;
         do {
-        System.out.print("Εισάγετε το όνομα του φοιτητή:");
-        name = KeyB.nextLine();
+            System.out.print("Εισάγετε το όνομα του φοιτητή:");
+            name = KeyB.nextLine();
 
-        if (( i= SearchByName(name)) == -1) {
-            System.out.println ("Δεν υπάρχει άτομο με αυτό το όνομα....");
-            return;
-        }
-        tmp = AllStudents.get(i);
-        tmp.fullPrint();
-        System.out.print("Το κατάλληλο άτομο για επεξεργασία; (Ν/Ο): ");
-        choice = KeyB.nextLine().toUpperCase();
-    }while (!choice.equals("Ν"));
-        String email, department, phone;
+            if (( i= SearchByName(name)) == -1) {
+                System.out.println ("Δεν υπάρχει άτομο με αυτό το όνομα....");
+                return;
+            }
+            tmp = AllStudents.get(i);
+            tmp.fullPrint();
+            System.out.print("Το κατάλληλο άτομο για επεξεργασία; (Ν/Ο): ");
+            choice = KeyB.nextLine().toUpperCase();
+        }while (!choice.equals("Ν"));
+        String email, department, phone; // ΠΑΡΑΔΟΧΗ - Δεν μπορεί να τροποποιηθεί το ΑΜ.
         System.out.print("Εισάγετε το νέο όνομα: ");
         name = KeyB.nextLine();
         tmp.setName(name);
@@ -220,32 +221,31 @@ public class MainApp {
         Student tmp = null;
         int i = -1;
         do {
-        System.out.print("Εισάγετε το όνομα του φοιτητή:");
-        name = KeyB.nextLine();
+            System.out.print("Εισάγετε το όνομα του φοιτητή:");
+            name = KeyB.nextLine();
 
-        if (( i= SearchByName(name)) == -1) {
-            System.out.println ("Δεν υπάρχει άτομο με αυτό το όνομα....");
-            return;
-        }
-        tmp = AllStudents.get(i);
-        tmp.fullPrint(); // Εμφάνιση των στοιχείων του φοιτητή για επιβεβαίωση
-        System.out.print("Το κατάλληλο άτομο για διαγραφή; (Ν/Ο): ");
-        choice = KeyB.nextLine().toUpperCase(); // Εισαγωγή επιλογής από τον χρήστη και μετατροπή σε κεφαλαία γράμματα
-    }while (!choice.equals("Ν"));
+            if (( i= SearchByName(name)) == -1) {
+                System.out.println ("Δεν υπάρχει άτομο με αυτό το όνομα....");
+                return;
+            }
+            tmp = AllStudents.get(i);
+            tmp.fullPrint(); // Εμφάνιση των στοιχείων του φοιτητή για επιβεβαίωση
+            System.out.print("Το κατάλληλο άτομο για διαγραφή; (Ν/Ο): ");
+            choice = KeyB.nextLine().toUpperCase(); // Εισαγωγή επιλογής από τον χρήστη και μετατροπή σε κεφαλαία γράμματα
+        }while (!choice.equals("Ν"));
         System.out.print("Είστε σίγουροι ότι θέλετε να διαγράψετε τον φοιτητή " + tmp.getName() + "? (Ν/Ο): ");
         choice = KeyB.nextLine().toUpperCase(); // Εισαγωγή επιλογής από τον χρήστη και μετατροπή σε κεφαλαία γράμματα
-        if (!choice.equalsIgnoreCase("Ν")) {
-            System.out.println("Η διαγραφή ακυρώθηκε.");
-        }
-        else {
-        AllStudents.remove(i); // Διαγραφή του φοιτητή από τη λίστα
-        }
+            if (!choice.equalsIgnoreCase("Ν")) {
+                System.out.println("Η διαγραφή ακυρώθηκε.");
+            }
+            else {
+                AllStudents.remove(i); // Διαγραφή του φοιτητή από τη λίστα
+            }
         System.out.println("Ο φοιτητής διαγράφηκε επιτυχώς.");
         pause();
     }
         
-
-    /**
+     /**
      * @param args the command line arguments
      */
     
