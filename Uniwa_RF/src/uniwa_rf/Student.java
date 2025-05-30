@@ -6,7 +6,7 @@ package uniwa_rf;
 
 /**
  *
- * @author macuser
+ * @author Reidon Floqi
  */
 public class Student {
     // Ιδιωτικά Πεδία (Private fields)

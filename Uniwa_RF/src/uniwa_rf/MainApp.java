@@ -65,12 +65,15 @@ public class MainApp {
                 break;
         }
     }   while (choice != 7);
+        System.out.println("Ευχαριστούμε που χρησιμοποιήσατε την εφαρμογή μας!");
+        System.exit(0); // Τερματισμός της εφαρμογής
     }
 
-    public void pause(){ // Μέθοδος για παύση της εκτέλεσης και αναμονή για είσοδο από τον χρήστη
+    public void pause() { // Μέθοδος για παύση της εκτέλεσης και αναμονή για είσοδο από τον χρήστη
         System.out.print("Πατήστε Enter για να συνεχίσετε...");
         KeyB.nextLine();
     }
+
     public void showAllStudents() { // Μέθοδος για εμφάνιση όλων των φοιτητών
         System.out.println("Εκτυπωση ολους τους φοιτητες:");
         for (Student tmp : AllStudents) {
@@ -79,6 +82,7 @@ public class MainApp {
         }
         pause();
     }
+
     public void addStudent() { // Μέθοδος για προσθήκη νέου φοιτητή
         Cls();
         ClsWin();
@@ -89,9 +93,7 @@ public class MainApp {
         name = KeyB.nextLine();
         System.out.print("AM: "); 
         studentId = KeyB.nextLine();
-
-        //ελεγχος για το αν υπαρχει ηδη το ΑΜ
-        while (searchStudentID(studentId)) {
+        while (searchStudentID(studentId)) { // Ελέγχουμε αν το ΑΜ υπάρχει ήδη
         System.out.print("Το ΑΜ υπάρχει ήδη. \nΠαρακαλώ εισάγετε ένα νέο ΑΜ: ");
         studentId = KeyB.nextLine();
         }
@@ -226,19 +228,19 @@ public class MainApp {
             return;
         }
         tmp = AllStudents.get(i);
-        tmp.fullPrint();
+        tmp.fullPrint(); // Εμφάνιση των στοιχείων του φοιτητή για επιβεβαίωση
         System.out.print("Το κατάλληλο άτομο για διαγραφή; (Ν/Ο): ");
-        choice = KeyB.nextLine().toUpperCase();
+        choice = KeyB.nextLine().toUpperCase(); // Εισαγωγή επιλογής από τον χρήστη και μετατροπή σε κεφαλαία γράμματα
     }while (!choice.equals("Ν"));
         System.out.print("Είστε σίγουροι ότι θέλετε να διαγράψετε τον φοιτητή " + tmp.getName() + "? (Ν/Ο): ");
-        choice = KeyB.nextLine().toUpperCase();
+        choice = KeyB.nextLine().toUpperCase(); // Εισαγωγή επιλογής από τον χρήστη και μετατροπή σε κεφαλαία γράμματα
         if (!choice.equalsIgnoreCase("Ν")) {
             System.out.println("Η διαγραφή ακυρώθηκε.");
         }
         else {
-        AllStudents.remove(i);
-        System.out.println("Ο φοιτητής διαγράφηκε επιτυχώς.");
+        AllStudents.remove(i); // Διαγραφή του φοιτητή από τη λίστα
         }
+        System.out.println("Ο φοιτητής διαγράφηκε επιτυχώς.");
         pause();
     }
         
@@ -251,8 +253,7 @@ public class MainApp {
         MainApp MP = new MainApp();
         MP.Menu();
     }
-    public void Cls ()
-    {
+    public void Cls () {
         try
         {
             new ProcessBuilder ("/usr/bin/clear").inheritIO ().
@@ -269,8 +270,7 @@ public class MainApp {
     }
     
     
-    public void ClsWin ()
-    {
+    public void ClsWin (){
 
         try
         {
