@@ -105,6 +105,8 @@ public class MainApp {
         System.out.print("Τηλέφωνο: ");
         phone = KeyB.nextLine();
         AllStudents.add(new Student(name, studentId, email, department, phone));
+        System.out.println("Ο φοιτητής προστέθηκε επιτυχώς.");
+        pause();
     }
     public boolean searchStudentID(String ID){ // Μέθοδος για αναζήτηση φοιτητή βάσει ΑΜ και ελέγχουμε αν υπάρχει φοιτητής με το συγκεκριμένο ΑΜ
         for (Student tmp : AllStudents) {
@@ -114,26 +116,28 @@ public class MainApp {
         }
         return false;
     }
-    public void searchStudentName() { // Μέθοδος για αναζήτηση φοιτητή βάσει ονόματος
+    public void searchStudentName() { // Μέθοδος αναζήτησης φοιτητή βάσει αρχικών χαρακτήρων ονόματος
         Cls();
         ClsWin();
         System.out.println("-----------------UNIWA------------------");
         System.out.println("----Αναζήτηση φοιτητή βάσει ονόματος----\n");
-        System.out.print("Εισάγετε το όνομα του φοιτητή:");
-        String name = KeyB.nextLine();
-        Student tmp;
-        int i;
-        if (( i= SearchByName(name)) == -1) {
-            System.out.println ("Δεν υπάρχει άτομο με αυτό το όνομα....");
-            return;
+        while (true) {
+            System.out.print("Εισάγετε το όνομα του φοιτητή:");
+            String name = KeyB.nextLine();
+            int i = SearchByName(name);
+            if (i == -1) {
+                System.out.println("Δεν υπάρχει άτομο με αυτό το όνομα. Προσπαθήστε ξανά.\n");
+            } else {
+                Student tmp = AllStudents.get(i);
+                tmp.fullPrint();
+                System.out.println("\n");
+                pause();
+                break;
+            }
         }
-        tmp = AllStudents.get(i);
-        tmp.fullPrint();
-        pause();
-    
     }
 
-    public int SearchByName (String A) // Βοηθητική Μέθοδος για αναζήτηση φοιτητή βάσει ονόματος
+    public int SearchByName (String A) // Βοηθητική Μέθοδος αναζήτησης φοιτητή βάσει αρχικών χαρακτήρων ονόματος
     {
         int i;
         Student tmp;
