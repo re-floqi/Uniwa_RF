@@ -19,9 +19,9 @@ public class MainApp {
      public MainApp (){
          AllStudents = new ArrayList <Student> ();
          KeyB = new Scanner (System.in);
-         AllStudents.add(new Student("Reidon Floqi","00001","refloqi@uniwa.com","ICT","6975625353"));
-         AllStudents.add(new Student("Elli Papa","00002","ellipapa@uniwa.com","Economics","6975625350"));
-         AllStudents.add(new Student("Vaso Ksinou","00003","vksinou@uniwa.com","Law","00000"));
+         AllStudents.add(new Student("R F","00001","rf@uniwa.com","ICT","00000"));
+         AllStudents.add(new Student("E P","00002","ep@uniwa.com","Economics","11111"));
+         AllStudents.add(new Student("V K","00003","vk@uniwa.com","Law","22222"));
     }
 
     public void Menu() {
