@@ -19,15 +19,16 @@ public class MainApp {
      public MainApp (){
          AllStudents = new ArrayList <Student> ();
          KeyB = new Scanner (System.in);
-         AllStudents.add(new Student("R F","00001","rf@uniwa.com","ICT","00000"));
+         AllStudents.add(new Student("Reidon Floqi","00001","rf@uniwa.com","ICT","00000"));
          AllStudents.add(new Student("E P","00002","ep@uniwa.com","Economics","11111"));
-         AllStudents.add(new Student("V K","00003","vk@uniwa.com","Law","22222"));
+         AllStudents.add(new Student("V K","00003","vk@uniwa.com","Tech","22222"));
     }
 
     public void Menu() {
         int choice;
         do {
         Cls();
+        ClsWin();
         System.out.println("-----------------UNIWA------------------");
         System.out.println("--------------Κύριο Μενού---------------");
         System.out.println("1. Προβολή όλων των διαθέσιμων φοιτητών");
@@ -65,7 +66,10 @@ public class MainApp {
                 break;
         }
     }   while (choice != 7);
-        System.out.println("Ευχαριστούμε που χρησιμοποιήσατε την εφαρμογή μας!");
+        Cls();
+        ClsWin();
+        banner();
+        System.out.println("Ευχαριστώ που χρησιμοποιήσατε την εφαρμογή μου!");
         System.exit(0); // Τερματισμός της εφαρμογής
     }
 
@@ -73,11 +77,30 @@ public class MainApp {
         System.out.print("Πατήστε Enter για να συνεχίσετε...");
         KeyB.nextLine();
     }
+    
+    public void banner() { // Μέθοδος για γραφικα
+    System.out.print("""
+           __  __ _   __ ____ _       __ ___ 
+          / / / // | / //  _/| |     / //   |
+         / / / //  |/ / / /  | | /| / // /| |
+        / /_/ // /|  /_/ /   | |/ |/ // ___ |
+        \\____//_/ |_//___/   |__/|__//_/  |_|
+                                             
+        """);
+    
+    }
+    
+ 
+    
 
     public void showAllStudents() { // Μέθοδος για εμφάνιση όλων των φοιτητών
+        Cls();
+        ClsWin();
+        System.out.println("-----------------UNIWA------------------");
         System.out.println("Εκτυπωση ολους τους φοιτητες:");
         for (Student tmp : AllStudents) {
-            System.out.println("---------------------------------");
+            
+            System.out.println("----------------------------------------");
             tmp.fullPrint();
         }
         pause();
@@ -191,13 +214,14 @@ public class MainApp {
 
             if (( i= SearchByName(name)) == -1) {
                 System.out.println ("Δεν υπάρχει άτομο με αυτό το όνομα....");
+                pause();
                 return;
             }
             tmp = AllStudents.get(i);
             tmp.fullPrint();
             System.out.print("Το κατάλληλο άτομο για επεξεργασία; (Ν/Ο): ");
             choice = KeyB.nextLine().toUpperCase();
-        }while (!choice.equals("Ν"));
+        }while (!choice.equalsIgnoreCase("N") && !choice.equals("Ν"));
         String email, department, phone; // ΠΑΡΑΔΟΧΗ - Δεν μπορεί να τροποποιηθεί το ΑΜ.
         System.out.print("Εισάγετε το νέο όνομα: ");
         name = KeyB.nextLine();
@@ -230,20 +254,23 @@ public class MainApp {
 
             if (( i= SearchByName(name)) == -1) {
                 System.out.println ("Δεν υπάρχει άτομο με αυτό το όνομα....");
+                pause();
                 return;
             }
             tmp = AllStudents.get(i);
             tmp.fullPrint(); // Εμφάνιση των στοιχείων του φοιτητή για επιβεβαίωση
             System.out.print("Το κατάλληλο άτομο για διαγραφή; (Ν/Ο): ");
             choice = KeyB.nextLine().toUpperCase(); // Εισαγωγή επιλογής από τον χρήστη και μετατροπή σε κεφαλαία γράμματα
-        }while (!choice.equals("Ν"));
+        }while (!choice.equalsIgnoreCase("N") && !choice.equals("Ν"));
         System.out.print("Είστε σίγουροι ότι θέλετε να διαγράψετε τον φοιτητή " + tmp.getName() + "? (Ν/Ο): ");
         choice = KeyB.nextLine().toUpperCase(); // Εισαγωγή επιλογής από τον χρήστη και μετατροπή σε κεφαλαία γράμματα
-            if (!choice.equalsIgnoreCase("Ν")) {
+            if (!choice.equalsIgnoreCase("N") && !choice.equals("Ν")) {
                 System.out.println("Η διαγραφή ακυρώθηκε.");
+                pause();
             }
             else {
                 AllStudents.remove(i); // Διαγραφή του φοιτητή από τη λίστα
+
             }
         System.out.println("Ο φοιτητής διαγράφηκε επιτυχώς.");
         pause();
